@@ -1,9 +1,9 @@
-from sandwhichshopmodels import Order
+from sandwichshopmodels import Order
 
 from telerivetutils import respond_to_message, error_response
 
 
-class telerivet_incoming_response(NebriOS):
+class telerivet_incoming_order(NebriOS):
     listens_to = ['sms_body']
 
     def check(self):

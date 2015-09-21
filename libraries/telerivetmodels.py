@@ -1,6 +1,16 @@
 from nebriosmodels import NebriOSModel, NebriOSField, NebriOSReference
 
 
+class Conversation(NebriOSModel):
+    date_started = NebriOSField(required=True, default=datetime.now)
+    external_number = NebriOSField(required=True)
+    telerivet_number = NebriOSField()
+    is_active = NebriOSField(required=True, default=False)
+
+    def get_messages(self):
+        return Message.filter(conversation=self)
+
+
 class Message(NebriOSModel):
     date_received = NebriOSField(required=True, default=datetime.now)
     telerivet_id = NebriOSField(required=True, default='')
@@ -15,16 +25,6 @@ class Message(NebriOSModel):
     date_handled = NebriOSField()
     raw_data = NebriOSField(required=True, default='')
     conversation = NebriOSReference(Conversation, required=True)
-
-
-class Conversation(NebriOSModel):
-    date_started = NebriOSField(required=True, default=datetime.now)
-    external_number = NebriOSField(required=True)
-    telerivet_number = NebriOSField()
-    is_active = NebriOSField(required=True, default=False)
-
-    def get_messages(self):
-        return Message.filter(conversation=self)
 
 
 class Project(NebriOSModel):
