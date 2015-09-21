@@ -20,8 +20,11 @@ def send_new_message(to, content):
     return send_msg(msg)
 
 
-def respond_to_message(message, content):
+def respond_to_message(message, content, close_convo=False):
     convo = message.conversation
+    if close_convo:
+        convo.is_active = False
+        convo.save()
     msg = Message(
         sms_to=message.sms_from,
         sms_body=content,
