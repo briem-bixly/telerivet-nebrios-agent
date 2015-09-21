@@ -6,10 +6,10 @@ class telerivet_retry_send(NebriOS):
     listens_to = ['telerivet_retry_send']
 
     def check(self):
-        project = Project.filter()[0]
+        project = Project.filter()
         return project.length > 0 and \
-               project.api_key != '' and \
-               project.project_id != ''
+               project.api_key[0] != '' and \
+               project.project_id[0] != ''
 
     def action(self):
         pending_messages = Message.filter(sent=False, sms_direction='')
