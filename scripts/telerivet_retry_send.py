@@ -6,7 +6,7 @@ class telerivet_retry_send(NebriOS):
     listens_to = ['telerivet_retry_send']
 
     def check(self):
-        project = Project.filter()
+        project = Project.filter()[0]
         return project.length > 0 and \
                project.api_key != '' and \
                project.project_id != ''
