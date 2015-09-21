@@ -6,7 +6,7 @@ import logging
 @token_required(realm='telerivet')
 def incoming_message(request):
     data = request.POST
-    if data['secret'] != 'ZFG4P3KLHTRLXT4DPFAZWC6QUMMKANX9':
+    if data['secret'] != 'ZFG4P3KLHTRLXT4DPFAZWC6QUMMKANX0':
         return HttpResponseForbidden
     try:
         msg = Message.get(telerivet_id=data['id'])
@@ -41,7 +41,7 @@ def incoming_message(request):
 @token_required(realm='telerivet')
 def outgoing_message(request):
     data = request.POST
-    if data['secret'] != 'BTOIJaktfp6SopAQBQdGXFE7vBPPlM':
+    if data['secret'] != 'BTOIJaktfp6SopAQBQdGXFE7vBPPl5':
         return HttpResponseForbidden
     try:
         msg = Message.get(telerivet_id=data['id'])
